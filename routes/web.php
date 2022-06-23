@@ -1,18 +1,21 @@
 <?php
 
+use App\Http\Controllers\GalleryFolderAlbumsController;
+use App\Models\GalleryFolder;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::group([
+    'prefix' => 'extranet',
+    'as' => 'extranet.',
+    'middleware' => 'defaults',
+], function () {
+    Route::get('{locale}/gallery/{folder:slug}/albums', [GalleryFolderAlbumsController::class, 'index'])->name('gallery-folders.albums.index');
+});
 
 Route::get('/', function () {
-    return view('welcome');
+    $folder = GalleryFolder::query()->first();
+
+    dd(
+        route('extranet.gallery-folders.albums.index', $folder)
+    );
 });

@@ -2,18 +2,21 @@
 
 namespace Database\Seeders;
 
+use App\Models\GalleryFolder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class FoldersTableSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      *
      * @return void
      */
     public function run()
     {
-        $this->call(FoldersTableSeeder::class);
+        GalleryFolder::create([
+            'slug' => 'some-test-slug',
+        ]);
     }
 }
