@@ -15,7 +15,8 @@ Route::group([
 Route::get('/', function () {
     $folder = GalleryFolder::query()->first();
 
-    dd(
-        route('extranet.gallery-folders.albums.index', $folder)
-    );
+    return [
+        "expected-route" => "http://127.0.0.1:8000/extranet/de/gallery/$folder->slug/albums",
+        "generated-route" =>  route('extranet.gallery-folders.albums.index', $folder),
+    ];
 });
